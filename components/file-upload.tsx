@@ -19,13 +19,10 @@ export const FileUpload = ({ onChange, value, endpoint }: FileUploadProps) => {
   if (value && fileType !== "pdf") {
     return (
       <div className="relative h-20 w-20">
-        <Image fill src={value} alt="upload" className="rounded-full" />
+        <Image fill src={value} alt="Upload" className="rounded-full" />
         <button
-          onClick={() => {
-            onChange("");
-          }}
-          className="bg-rose-500 text-white p-1 absolute rounded-full
-        top-0 right-0 shadow-sm"
+          onClick={() => onChange("")}
+          className="bg-rose-500 text-white p-1 rounded-full absolute top-0 right-0 shadow-sm"
           type="button"
         >
           <X className="h-4 w-4" />
@@ -33,6 +30,7 @@ export const FileUpload = ({ onChange, value, endpoint }: FileUploadProps) => {
       </div>
     );
   }
+
   if (value && fileType === "pdf") {
     return (
       <div className="relative flex items-center p-2 mt-2 rounded-md bg-background/10">
@@ -63,7 +61,7 @@ export const FileUpload = ({ onChange, value, endpoint }: FileUploadProps) => {
         onChange(res?.[0].url);
       }}
       onUploadError={(error: Error) => {
-        alert(`ERROR! ${error.message}`);
+        console.log(error);
       }}
     />
   );
