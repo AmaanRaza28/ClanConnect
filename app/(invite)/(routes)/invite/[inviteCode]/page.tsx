@@ -1,21 +1,20 @@
 import { redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
-import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { NextResponse } from "next/server";
+import { currentProfile } from "@/lib/current-profile";
 
-interface InviteCodePageParams {
+interface InviteCodePageProps {
   params: {
     inviteCode: string;
   };
 }
 
-const InviteCodePage = async ({ params }: InviteCodePageParams) => {
+const InviteCodePage = async ({ params }: InviteCodePageProps) => {
   const profile = await currentProfile();
 
   if (!profile) {
-    return redirectToSignIn;
+    return redirectToSignIn();
   }
 
   if (!params.inviteCode) {

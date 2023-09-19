@@ -34,7 +34,7 @@ const findConversation = async (memberOneId: string, memberTwoId: string) => {
         },
       },
     });
-  } catch (error) {
+  } catch {
     return null;
   }
 };
@@ -62,7 +62,7 @@ const createNewConversation = async (
         },
       },
     });
-  } catch (error) {
+  } catch {
     return null;
   }
 };

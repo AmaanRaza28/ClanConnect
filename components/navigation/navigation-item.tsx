@@ -4,15 +4,15 @@ import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 
 import { cn } from "@/lib/utils";
-import ActionTooltip from "@/components/action-tooltip";
+import { ActionTooltip } from "@/components/action-tooltip";
 
 interface NavigationItemProps {
   id: string;
-  name: string;
   imageUrl: string;
+  name: string;
 }
 
-const NavigationItem = ({ id, name, imageUrl }: NavigationItemProps) => {
+export const NavigationItem = ({ id, imageUrl, name }: NavigationItemProps) => {
   const params = useParams();
   const router = useRouter();
 
@@ -21,7 +21,7 @@ const NavigationItem = ({ id, name, imageUrl }: NavigationItemProps) => {
   };
 
   return (
-    <ActionTooltip label={name} align="center" side="right">
+    <ActionTooltip side="right" align="center" label={name}>
       <button onClick={onClick} className="group relative flex items-center">
         <div
           className={cn(
@@ -43,5 +43,3 @@ const NavigationItem = ({ id, name, imageUrl }: NavigationItemProps) => {
     </ActionTooltip>
   );
 };
-
-export default NavigationItem;

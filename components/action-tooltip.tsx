@@ -9,16 +9,16 @@ import {
 
 interface ActionTooltipProps {
   label: string;
-  align?: "start" | "end" | "center";
-  side?: "top" | "right" | "bottom" | "left";
   children: React.ReactNode;
+  side?: "top" | "right" | "bottom" | "left";
+  align?: "start" | "center" | "end";
 }
 
 export const ActionTooltip = ({
   label,
-  align,
-  side,
   children,
+  side,
+  align,
 }: ActionTooltipProps) => {
   return (
     <TooltipProvider>
@@ -33,5 +33,3 @@ export const ActionTooltip = ({
     </TooltipProvider>
   );
 };
-
-export default ActionTooltip;

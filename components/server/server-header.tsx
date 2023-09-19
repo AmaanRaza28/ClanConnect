@@ -3,21 +3,22 @@
 import { ServerWithMembersWithProfiles } from "@/types";
 import { MemberRole } from "@prisma/client";
 import {
+  ChevronDown,
+  LogOut,
+  PlusCircle,
+  Settings,
+  Trash,
+  UserPlus,
+  Users,
+} from "lucide-react";
+
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  ChevronDown,
-  LucideLogOut,
-  PlusCircle,
-  Settings,
-  Trash2,
-  UserPlus,
-  Users,
-} from "lucide-react";
 import { useModal } from "@/hooks/use-modal-store";
 
 interface ServerHeaderProps {
@@ -83,7 +84,7 @@ export const ServerHeader = ({ server, role }: ServerHeaderProps) => {
             className="text-rose-500 px-3 py-2 text-sm cursor-pointer"
           >
             Delete Server
-            <Trash2 className="h-4 w-4 ml-auto" />
+            <Trash className="h-4 w-4 ml-auto" />
           </DropdownMenuItem>
         )}
         {!isAdmin && (
@@ -92,7 +93,7 @@ export const ServerHeader = ({ server, role }: ServerHeaderProps) => {
             className="text-rose-500 px-3 py-2 text-sm cursor-pointer"
           >
             Leave Server
-            <LucideLogOut className="h-4 w-4 ml-auto" />
+            <LogOut className="h-4 w-4 ml-auto" />
           </DropdownMenuItem>
         )}
       </DropdownMenuContent>

@@ -1,12 +1,11 @@
 "use client";
-import { useForm } from "react-hook-form";
-import { useParams, useRouter } from "next/navigation";
-const axios = require("axios").default;
-import { ChannelType } from "@prisma/client";
-import qs from "query-string";
 
+import qs from "query-string";
+import axios from "axios";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { ChannelType } from "@prisma/client";
 
 import {
   Dialog,
@@ -23,6 +22,10 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useParams, useRouter } from "next/navigation";
+import { useModal } from "@/hooks/use-modal-store";
 import {
   Select,
   SelectContent,
@@ -30,16 +33,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { useModal } from "@/hooks/use-modal-store";
 import { useEffect } from "react";
 
 const formSchema = z.object({
   name: z
     .string()
     .min(1, {
-      message: "Channel name is Required.",
+      message: "Channel name is required.",
     })
     .refine((name) => name !== "general", {
       message: "Channel name cannot be 'general'",
@@ -81,13 +81,10 @@ export const CreateChannelModal = () => {
           serverId: params?.serverId,
         },
       });
-
       await axios.post(url, values);
 
       form.reset();
-
       router.refresh();
-
       onClose();
     } catch (error) {
       console.log(error);
@@ -101,10 +98,7 @@ export const CreateChannelModal = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
-      <DialogContent
-        className="bg-white text-black p-0
-        overflow-hidden"
-      >
+      <DialogContent className="bg-white text-black p-0 overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
             Create Channel
@@ -118,19 +112,14 @@ export const CreateChannelModal = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel
-                      className="uppercase text-xs font-bold text-zinc-500 
-                      dark:text-secondary/70"
-                    >
-                      Channel Name
+                    <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70">
+                      Channel name
                     </FormLabel>
                     <FormControl>
                       <Input
                         disabled={isLoading}
-                        className="bg-zinc-300/50 border-0 
-                        focus-visible:ring-0 text-black 
-                        focus-visible:ring-offset-0"
-                        placeholder="Enter Channel Name"
+                        className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
+                        placeholder="Enter channel name"
                         {...field}
                       />
                     </FormControl>
@@ -143,12 +132,7 @@ export const CreateChannelModal = () => {
                 name="type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel
-                      className="uppercase text-xs font-bold text-zinc-500 
-                    dark:text-secondary/70"
-                    >
-                      Channel type
-                    </FormLabel>
+                    <FormLabel>Channel Type</FormLabel>
                     <Select
                       disabled={isLoading}
                       onValueChange={field.onChange}
@@ -156,7 +140,7 @@ export const CreateChannelModal = () => {
                     >
                       <FormControl>
                         <SelectTrigger className="bg-zinc-300/50 border-0 focus:ring-0 text-black ring-offset-0 focus:ring-offset-0 capitalize outline-none">
-                          <SelectValue placeholder="Select a Channel type" />
+                          <SelectValue placeholder="Select a channel type" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>

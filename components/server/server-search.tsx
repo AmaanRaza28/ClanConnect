@@ -2,6 +2,7 @@
 
 import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 
 import {
   CommandDialog,
@@ -9,9 +10,8 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
+  CommandList,
 } from "@/components/ui/command";
-import { CommandList } from "cmdk";
-import { useParams, useRouter } from "next/navigation";
 
 interface ServerSearchProps {
   data: {
@@ -51,6 +51,8 @@ export const ServerSearch = ({ data }: ServerSearchProps) => {
     id: string;
     type: "channel" | "member";
   }) => {
+    setOpen(false);
+
     if (type === "member") {
       return router.push(`/servers/${params?.serverId}/conversations/${id}`);
     }
@@ -77,7 +79,7 @@ export const ServerSearch = ({ data }: ServerSearchProps) => {
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder="Search all channels and members" />
         <CommandList>
-          <CommandEmpty>No Results Found</CommandEmpty>
+          <CommandEmpty>No Results found</CommandEmpty>
           {data.map(({ label, type, data }) => {
             if (!data?.length) return null;
 
@@ -86,8 +88,8 @@ export const ServerSearch = ({ data }: ServerSearchProps) => {
                 {data?.map(({ id, icon, name }) => {
                   return (
                     <CommandItem
-                      onSelect={() => onClick({ id, type })}
                       key={id}
+                      onSelect={() => onClick({ id, type })}
                     >
                       {icon}
                       <span>{name}</span>
