@@ -1,6 +1,6 @@
-# CommunityConnect - Community Management App
+# ClanConnect - Community Management App
 
-CommunityConnect is a community management application built with Next.js 13, React, Socket.io, Prisma, TailwindCSS, MySQL, and other technologies. It provides a versatile platform for real-time communication, server management, and member interaction.
+ClanConnect is a community management application built with Next.js 13, React, Socket.io, Prisma, TailwindCSS, MySQL, and other technologies. It provides a versatile platform for real-time communication, server management, and member interaction.
 
 ## Features
 
